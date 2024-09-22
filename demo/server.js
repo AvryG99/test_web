@@ -82,6 +82,27 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// User Profile endpoint
+app.get('/user/:username', async (req, res) => {
+    const { username } = req.params;
+
+    try {
+        const pool = await getPool();
+        const result = await pool.request()
+            .input('username', sql.VarChar, username)
+            .query('SELECT description FROM [User] WHERE username = @username');
+
+        if (result.recordset.length > 0) {
+            res.status(200).json({ description: result.recordset[0].description });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
