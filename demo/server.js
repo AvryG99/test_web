@@ -18,7 +18,7 @@ const getPool = async () => {
     const pool = await sql.connect({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        server: 'localhost',
+        server: process.env.DB_SERVER,
         database: process.env.DB_DATABASE,
         options: {
             encrypt: true,
