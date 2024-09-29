@@ -39,7 +39,7 @@ app.post('/login', async (req, res) => {
             .query('SELECT description, password FROM [User] WHERE username = @username');
 
         if (result.recordset.length > 0) {
-            const storedPassword = result.recordset[0].password;
+            const storedPassword = result.recordset[0].password.trim();
             if (password === storedPassword) {
                 res.status(200).json({ description: result.recordset[0].description });
             } else {
