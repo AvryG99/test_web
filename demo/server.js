@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-    origin: 'https://brave-pebble-0f4a7450f.5.azurestaticapps.net' // Front-end URL
+    origin: 'https://yellow-beach-0a2fca50f.5.azurestaticapps.net/' // Front-end URL
 }));
 app.use(bodyParser.json());
 
